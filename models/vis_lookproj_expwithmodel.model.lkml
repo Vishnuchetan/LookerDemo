@@ -15,3 +15,19 @@ datagroup: vis_lookproj_expwithmodel_default_datagroup {
 persist_with: vis_lookproj_expwithmodel_default_datagroup
 
 explore: employee_sample_data {}
+
+explore: orders { #name of the view
+  label: "sales" #name of the explore as required
+  join: salesman {
+    relationship: many_to_many
+    sql_on: $(orders.salesman_id) = ({salesman.salesman_id)$;;
+  }
+}
+
+explore: customer { #name of the view
+    label: "CRM" #name of the explore as required
+    join: salesman {
+      relationship: many_to_many
+      sql_on: ${customer.salesman_id} = ${salesman.salesman_id};;
+    }
+  }
